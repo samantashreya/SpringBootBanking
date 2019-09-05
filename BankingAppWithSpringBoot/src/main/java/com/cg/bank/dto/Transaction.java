@@ -19,8 +19,8 @@ public class Transaction {
 	private int transId;
 	private String transType;
 	private Date transDate;
-	private int custId;
-
+	private int sourceCustId;
+	private int destinationCustId;
 	private double amount;
 
 	public int getTransId() {
@@ -39,6 +39,22 @@ public class Transaction {
 		this.transType = transType;
 	}
 
+	public int getSourceCustId() {
+		return sourceCustId;
+	}
+
+	public void setSourceCustId(int sourceCustId) {
+		this.sourceCustId = sourceCustId;
+	}
+
+	public int getDestinationCustId() {
+		return destinationCustId;
+	}
+
+	public void setDestinationCustId(int destinationCustId) {
+		this.destinationCustId = destinationCustId;
+	}
+
 	public Date getTransDate() {
 		return transDate;
 	}
@@ -47,13 +63,7 @@ public class Transaction {
 		this.transDate = transDate;
 	}
 
-	public int getCustId() {
-		return custId;
-	}
 
-	public void setCustId(int custId) {
-		this.custId = custId;
-	}
 
 	public double getAmount() {
 		return amount;

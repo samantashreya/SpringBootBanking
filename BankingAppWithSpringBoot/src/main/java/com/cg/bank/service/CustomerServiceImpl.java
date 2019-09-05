@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
 	            	transaction.setTransType("Credit");
 	            	Date transDate = new Date();
 	        		transaction.setTransDate(transDate);
-	        		transaction.setCustId(sourceCustId);
+	        		transaction.setSourceCustId(sourceCustId);
 	        		transaction.setAmount(amount);
 	        		transactionDao.save(transaction);
 	                 return customer;
@@ -96,7 +96,7 @@ public class CustomerServiceImpl implements CustomerService {
 	            	transaction.setTransType("Debit");
 	            	Date transDate = new Date();
 	        		transaction.setTransDate(transDate);
-	        		transaction.setCustId(sourceCustId);
+	        		transaction.setSourceCustId(sourceCustId);
 	        		transaction.setAmount(amount);
 	        		transactionDao.save(transaction);
 	                 return customer;
@@ -126,7 +126,7 @@ public class CustomerServiceImpl implements CustomerService {
 	            	transaction.setTransType("debit");
 	            	Date transDate = new Date();
 	        		transaction.setTransDate(transDate);
-	        		transaction.setCustId(sourceCustId);
+	        		transaction.setSourceCustId(sourceCustId);
 	        		transaction.setAmount(amount);
 	        		transactionDao.save(transaction);
 	         
@@ -145,7 +145,7 @@ public class CustomerServiceImpl implements CustomerService {
 	            	transaction.setTransType("debit");
 	            	Date transDate = new Date();
 	        		transaction.setTransDate(transDate);
-	        		transaction.setCustId(sourceCustId);
+	        		transaction.setDestinationCustId(destCustId);
 	        		transaction.setAmount(amount);
 	        		transactionDao.save(transaction);
 	            	return customer;
