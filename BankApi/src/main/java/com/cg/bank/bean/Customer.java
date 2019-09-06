@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Bank12")
-public class AccountDetails {
+public class Customer {
 	@Id
 	@SequenceGenerator(name = "acc", sequenceName = "acc_seq",initialValue=1001,allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "acc")

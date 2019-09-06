@@ -14,7 +14,7 @@ import com.cg.bank.bean.Transactions;
 public interface TransactionDao extends JpaRepository<Transactions, Integer>{
 	@Query("from Transactions where acc =:acc")
 	  public List<Transactions> getTransactionsByAccountNumber(@Param("acc") int accountNumber);
-	  
+	 
 	 
 
 }

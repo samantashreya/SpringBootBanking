@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.bank.bean.AccountDetails;
+import com.cg.bank.bean.Customer;
 import com.cg.bank.bean.Transactions;
 import com.cg.bank.dao.BankDao;
 import com.cg.bank.dao.TransactionDao;
@@ -18,7 +18,7 @@ public class BankServiceImpl implements BankService{
 	@Autowired
 	TransactionDao transactionDao; 
 	@Override
-	public void createAccount(AccountDetails account) {
+	public void createAccount(Customer account) {
 		Transactions transaction=new Transactions();
 		transaction.setAccountNumber(account.getAccountNumber());
 		transaction.setDebit(0);
@@ -30,29 +30,29 @@ public class BankServiceImpl implements BankService{
 	}
 
 	@Override
-	public List<AccountDetails> showAllAccounts() {
+	public List<Customer> showAllAccounts() {
 		
 		return bankDao.findAll();
 	}
 
 	@Override
-	public AccountDetails getAccountDetails(int accountNumber) {
+	public Customer getCustomer(int accountNumber) {
 		
 		return bankDao.findById(accountNumber).get();
 	}
 
 	@Override
-	public AccountDetails showBalance(int accountNumber) {
-		AccountDetails account=bankDao.findById(accountNumber).get();
+	public Customer showBalance(int accountNumber) {
+		Customer account=bankDao.findById(accountNumber).get();
 		
         return account;
 	}
 
 	@Override
-	public AccountDetails depositAmount(int accountNumber, AccountDetails account) {
-		Optional<AccountDetails> optional=bankDao.findById(accountNumber);
+	public Customer depositAmount(int accountNumber, Customer account) {
+		Optional<Customer> optional=bankDao.findById(accountNumber);
 		Transactions transaction=new Transactions();
-		AccountDetails depositAccount=optional.get();
+		Customer depositAccount=optional.get();
 		transaction.setAccountNumber(depositAccount.getAccountNumber());
 		transaction.setDebit(0);
 		transaction.setCredit(account.getAmount());
@@ -65,10 +65,10 @@ public class BankServiceImpl implements BankService{
 		}
 
 	@Override
-	public AccountDetails withdrawAmount(int accountNumber, AccountDetails account) {
-		Optional<AccountDetails> optional=bankDao.findById(accountNumber);
+	public Customer withdrawAmount(int accountNumber, Customer account) {
+		Optional<Customer> optional=bankDao.findById(accountNumber);
 		Transactions transaction=new Transactions();
-		AccountDetails withdrawAccount=optional.get();
+		Customer withdrawAccount=optional.get();
 		transaction.setAccountNumber(withdrawAccount.getAccountNumber());
 		transaction.setDebit(account.getAmount());
 		transaction.setCredit(0);
@@ -81,7 +81,7 @@ public class BankServiceImpl implements BankService{
 	}
 
 	@Override
-	public AccountDetails fundTransfer(int senderAccountNumber, int recieverAccountNumber, AccountDetails account) {
+	public Customer fundTransfer(int senderAccountNumber, int recieverAccountNumber, Customer account) {
 		withdrawAmount(senderAccountNumber, account);
 		depositAmount(recieverAccountNumber, account);
 		return showBalance(senderAccountNumber);
@@ -89,7 +89,7 @@ public class BankServiceImpl implements BankService{
 
 	@Override
 	public boolean validateAccount(int accountNumber) {
-		Optional<AccountDetails> optional=bankDao.findById(accountNumber);
+		Optional<Customer> optional=bankDao.findById(accountNumber);
 		if(optional.isPresent())
 				return true;
 			else
